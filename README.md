@@ -1,42 +1,76 @@
 # 🏛️ WITI Governance Engine - Institutional Oversight & Management
+🔗 [Institutional Portal](https://sanadidari.com/witi/gov) | [WITI Ecosystem](https://sanadidari.com/witi)
 
 **WITI Governance Engine** is the administrative core of the **Sanadidari Legal Informatics Ecosystem**. Developed as a robust Laravel-based backend, it serves as the centralized hub for managing institutional workflows, legal acts, and judicial oversight.
 
-Designed for high-trust environments, it connects judicial authorities, bailiffs, and tribunals into a seamless, verifiable management pipeline.
+---
+
+## 🏗️ Architecture & Engineering Design
+
+This engine is built on **Laravel 11** following a hybrid **Domain-Driven Design (DDD)** approach to handle the high complexity of judicial workflows.
+
+- **Security Model**: Implements strict **Role-Based Access Control (RBAC)** via Laravel Policies and Gates.
+- **Data Integrity**: Uses database-level transactions for legal acts to ensure no partial state changes in institutional records.
+- **Optimization**: Eloquent indexing on geographic (`Tribunal`, `Region`) and temporal fields for high-performance reporting.
+- **Interoperability**: Specialized API layer using **Sanctum** for secure communication with the **WITI Field (NOUR)** mobile client.
+
+### 🏛️ Institutional Ecosystem
+```mermaid
+graph LR
+    A[Tribunals / Justice] -- Oversight --> B[WITI Governance]
+    B -- Management --> C[Bailiffs / Huissiers]
+    C -- Operations --> D[WITI Field App]
+    D -- Proof --> E[WITI Certify Protocol (QRPRUF)]
+```
 
 ---
 
-## 🏛️ Institutional Core Features
+## 🚀 Local Development & Installation
 
-### ⚖️ Judicial Lifecycle Management
-- **Acts Management**: Complete CRUD and lifecycle tracking for `Acte` (Legal Acts), ensuring full traceability.
-- **Bailiff Directory (`Huissier`)**: Centralized management of certified institutional agents and their credentials.
-- **Tribunal Integration**: Mapping of judicial jurisdictions (`Region`, `Tribunal`) to missions for geography-aware oversight.
+### Prerequisites
+- **PHP 8.2+**
+- **Composer** 
+- **Docker** (Recommended via Laravel Sail)
+- **MySQL 8.0+**
 
-### 🛡️ Compliance & Oversight
-- **Complaint Handling**: Integrated `Complaint` module for public or institutional grievance tracking and resolution.
-- **Role-Based Access Control (RBAC)**: Fine-grained permissions using Laravel's policy-driven architecture, ensuring that sensitive institutional data is only accessible to authorized personnel.
-
-### 📄 Professional Reporting
-- **PDF Generation Engine**: Automated generation of official judicial documents and mission reports (`ActeController@downloadPdf`).
-- **Data Integrity**: Backend validation logic to ensure all legal documentation meets institutional standards before certification.
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/sanadidari/governance-platform.git
+   cd governance-platform
+   ```
+2. Install dependencies:
+   ```bash
+   composer install
+   ```
+3. Initialize Environment:
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+4. Setup Database & Seeds:
+   ```bash
+   php artisan migrate --seed
+   ```
+5. Run the dev server:
+   ```bash
+   # Using Sail
+   ./vendor/bin/sail up
+   # Or using local PHP
+   php artisan serve
+   ```
 
 ---
 
-## 🛠️ Engineering & Architecture
-
-- **Framework**: Laravel 10 (PHP 8.2+)
-- **Architecture**: Domain-Driven Design (DDD) elements with specialized Models for institutional entities.
-- **Security**: 
-    - **CSRF Protection & Secure Headers**: Hardened configuration for government-grade security.
-    - **Row-Level Logic**: Advanced Eloquent queries to filter data based on regional jurisdiction.
-- **Tooling**: Custom scripts for institutional data migration (`fix_schema.php`) and administrator bootstrapping.
+## 🧪 Testing & CI/CD
+- **Automated Testing**: Standard PHPUnit suite in `tests/`. Includes Feature tests for API integrity and legal act lifecycles. Run with `./vendor/bin/phpunit`.
+- **Static Analysis**: Configured PHPStan/Larastan for type-safety and maintenance quality.
 
 ---
 
-## 🚀 Part of the WITI Ecosystem
-
-This engine provides the backend infrastructure for the **WITI Field App (NOUR)** and integrates with the **WITI Certify Protocol (QRPRUF)** to ensure that every field action is recorded, managed, and audited.
+## 📜 Professional Standard
+This component is designed to meet the rigorous standards of **Invisible Tech**, **Gigster**, and high-growth startup ecosystems, focusing on **Maintainability**, **Auditability**, and **Security**.
 
 ---
 *Developed by @sanadidari - Senior Full-Stack Engineer | Founder of Sanadidari SARL*
+
