@@ -1,76 +1,144 @@
-# 🏛️ WITI Governance Engine - Institutional Oversight & Management
-🔗 [Institutional Portal](https://sanadidari.com/witi/gov) | [WITI Ecosystem](https://sanadidari.com/witi)
+# Governance Platform — Institutional Management for Judicial Officers
 
-**WITI Governance Engine** is the administrative core of the **Sanadidari Legal Informatics Ecosystem**. Developed as a robust Laravel-based backend, it serves as the centralized hub for managing institutional workflows, legal acts, and judicial oversight.
+**National platform for managing the bailiff profession in Morocco**, built for the [National Council of Bailiffs of Justice](https://sanadidari.com/witi/gov). Part of the **NOUR** unified judicial ecosystem.
+
+🔗 [Live Portal](https://sanadidari.com/witi/gov) · [NOUR Mobile App](https://github.com/sanadidari/nour) · [WITI Ecosystem](https://sanadidari.com/witi)
 
 ---
 
-## 🏗️ Architecture & Engineering Design
+## Overview
 
-This engine is built on **Laravel 11** following a hybrid **Domain-Driven Design (DDD)** approach to handle the high complexity of judicial workflows.
+This platform provides the institutional back-office for **huissiers de justice** (judicial officers) across Morocco's 12 regions and 73 courts. It was built following a convention between **Sanadidari SARL** and the **Conseil National des Huissiers de Justice du Maroc**.
 
-- **Security Model**: Implements strict **Role-Based Access Control (RBAC)** via Laravel Policies and Gates.
-- **Data Integrity**: Uses database-level transactions for legal acts to ensure no partial state changes in institutional records.
-- **Optimization**: Eloquent indexing on geographic (`Tribunal`, `Region`) and temporal fields for high-performance reporting.
-- **Interoperability**: Specialized API layer using **Sanctum** for secure communication with the **WITI Field (NOUR)** mobile client.
+Alongside the platform, a Sanctum API automatically provisions credentials for the **NOUR** mobile app — so every registered huissier gets simultaneous access to both the institutional dashboard and the field certification app (zero-trust proof of presence via QR cryptography).
 
-### 🏛️ Institutional Ecosystem
-```mermaid
-graph LR
-    A[Tribunals / Justice] -- Oversight --> B[WITI Governance]
-    B -- Management --> C[Bailiffs / Huissiers]
-    C -- Operations --> D[WITI Field App]
-    D -- Proof --> E[WITI Certify Protocol (QRPRUF)]
+**Stack:** Laravel 12 · Filament 3 · MySQL · Sanctum · Arabic RTL UI
+
+---
+
+## Dashboard & Analytics
+
+| KPI Overview | Account Widget |
+|---|---|
+| ![Dashboard KPIs](docs/screenshots/sc1.png) | ![Dashboard account](docs/screenshots/sc2.png) |
+
+| Analytics Charts — Huissiers by Region & Status |
+|---|
+| ![Charts](docs/screenshots/sc3.png) |
+
+Real-time statistics: **3 registered huissiers**, **73 courts (mahakems)**, **12 regions**. Charts rendered via Filament widgets with Recharts.
+
+---
+
+## Judicial Acts (Actes & Procédures)
+
+| New Act Form — Date & Type | Act Type Selection |
+|---|---|
+| ![Acte form 1](docs/screenshots/sc4.png) | ![Acte type dropdown](docs/screenshots/sc5.png) |
+
+| Act Form — Reference Fields |
+|---|
+| ![Acte form 2](docs/screenshots/sc6.png) |
+
+Act types: Notification, Status Change, Constat/Saisie. Full lifecycle tracking with timestamps and reference numbers.
+
+---
+
+## Complaints (الشكايات)
+
+| Complaint Form — Rich Text | Complaint Status & Urgency |
+|---|---|
+| ![Complaint form 1](docs/screenshots/sc7.png) | ![Complaint form 2](docs/screenshots/sc8.png) |
+
+Complaint intake with rich text editor, status workflow (pending/in review/resolved), and urgency classification.
+
+---
+
+## Huissier Management
+
+| Huissiers List — Search & Filter | Add Huissier — Personal Info |
+|---|---|
+| ![Huissiers list](docs/screenshots/sc9.png) | ![Add huissier 1](docs/screenshots/sc10.png) |
+
+| Add Huissier — Address Fields |
+|---|
+| ![Add huissier 2](docs/screenshots/sc11.png) |
+
+On huissier creation, the `HuissierObserver` auto-provisions a `User` record with Sanctum credentials — same credentials sync to NOUR mobile via Supabase Auth (shared email identity).
+
+---
+
+## Regional Administration
+
+| Add Regional Admin (مسؤول جهوي) |
+|---|
+| ![Regional admin form](docs/screenshots/sc12.png) |
+
+RBAC with roles: `super_admin`, `regional_admin`, `huissier`. Regional admins manage their own jurisdiction scope.
+
+---
+
+## Geographic Coverage — Regions & Courts
+
+| 12 Moroccan Regions (الجهات) | Regions — Continued |
+|---|---|
+| ![Regions 1](docs/screenshots/sc13.png) | ![Regions 2](docs/screenshots/sc14.png) |
+
+| 73 Courts (المحاكم) | Courts — Continued |
+|---|---|
+| ![Mahakems 1](docs/screenshots/sc15.png) | ![Mahakems 2](docs/screenshots/sc16.png) |
+
+Full geographic coverage of Morocco's judicial map: all regions and all courts pre-seeded.
+
+---
+
+## Architecture
+
+```
+┌─────────────────────────────────────────────┐
+│         Governance Platform (Laravel)        │
+│  ┌──────────┐  ┌──────────┐  ┌───────────┐  │
+│  │  Filament│  │ Sanctum  │  │  HuissierO│  │
+│  │  Admin   │  │  API     │  │  bserver  │  │
+│  └──────────┘  └────┬─────┘  └─────┬─────┘  │
+└───────────────────┼────────────────┼────────┘
+                    │                │
+                    ▼                ▼
+          NOUR Mobile App      User provisioning
+          (Flutter + QRPRUF)   (shared credentials)
 ```
 
----
-
-## 🚀 Local Development & Installation
-
-### Prerequisites
-- **PHP 8.2+**
-- **Composer** 
-- **Docker** (Recommended via Laravel Sail)
-- **MySQL 8.0+**
-
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/sanadidari/governance-platform.git
-   cd governance-platform
-   ```
-2. Install dependencies:
-   ```bash
-   composer install
-   ```
-3. Initialize Environment:
-   ```bash
-   cp .env.example .env
-   php artisan key:generate
-   ```
-4. Setup Database & Seeds:
-   ```bash
-   php artisan migrate --seed
-   ```
-5. Run the dev server:
-   ```bash
-   # Using Sail
-   ./vendor/bin/sail up
-   # Or using local PHP
-   php artisan serve
-   ```
+- **HuissierObserver** — auto-provisions User on Huissier creation, bridges both apps via shared email identity
+- **Sanctum API** — token-based auth for mobile client
+- **Filament 3** — full Arabic RTL admin panel (via `APP_LOCALE=ar`)
+- **RBAC** — policies enforce scope per role (super_admin / regional_admin / huissier)
 
 ---
 
-## 🧪 Testing & CI/CD
-- **Automated Testing**: Standard PHPUnit suite in `tests/`. Includes Feature tests for API integrity and legal act lifecycles. Run with `./vendor/bin/phpunit`.
-- **Static Analysis**: Configured PHPStan/Larastan for type-safety and maintenance quality.
+## Installation
+
+```bash
+git clone https://github.com/sanadidari/governance-platform.git
+cd governance-platform
+composer install
+cp .env.example .env
+php artisan key:generate
+# Configure DB in .env
+php artisan migrate --seed
+php artisan serve
+```
+
+Admin panel at: `http://127.0.0.1:8000/admin/shuffle`
 
 ---
 
-## 📜 Professional Standard
-This component is designed to meet the rigorous standards of **Invisible Tech**, **Gigster**, and high-growth startup ecosystems, focusing on **Maintainability**, **Auditability**, and **Security**.
+## Related Projects
+
+| Project | Description |
+|---|---|
+| [NOUR](https://github.com/sanadidari/nour) | Unified judicial mobile app (Flutter) — this platform + QRPRUF |
+| [WITI Certify Protocol](https://github.com/sanadidari/witi-certify-protocol) | Zero-trust proof of presence (QR cryptography) |
 
 ---
-*Developed by @sanadidari - Senior Full-Stack Engineer | Founder of Sanadidari SARL*
 
+*Built by [Samir Chatwiti](https://sanadidari.com) — Sanadidari SARL · LegalTech · Morocco*

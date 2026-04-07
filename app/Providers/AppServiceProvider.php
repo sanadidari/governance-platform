@@ -16,21 +16,28 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        // FORCE ABSOLUE (Nuclear Option pour HostPapa)
-        $url = 'https://sanadidari.com/testftp/gov';
-        \Illuminate\Support\Facades\URL::forceRootUrl($url);
-        \Illuminate\Support\Facades\URL::forceScheme('https');
+        // Force local URL in dev to override any cached production settings
+        if (!app()->environment('production')) {
+            \Illuminate\Support\Facades\URL::forceRootUrl(config('app.url'));
+        }
 
-        // Force Laravel et Livewire à rester dans le sous-dossier
-        config([
-            'app.url' => $url,
-            'livewire.asset_url' => $url,
-            'livewire.update_route_group_config.prefix' => 'testftp/gov',
-            'livewire.update_route_group_config.middleware' => ['web'],
-        ]);
+        // FORCE ABSOLUE (Nuclear Option pour HostPapa) — production uniquement
+        if (app()->environment('production')) {
+            $url = 'https://sanadidari.com/testftp/gov';
+            \Illuminate\Support\Facades\URL::forceRootUrl($url);
+            \Illuminate\Support\Facades\URL::forceScheme('https');
 
-        if (!app()->runningInConsole()) {
-            \Illuminate\Support\Facades\URL::formatRoot(null, $url);
+            // Force Laravel et Livewire à rester dans le sous-dossier
+            config([
+                'app.url' => $url,
+                'livewire.asset_url' => $url,
+                'livewire.update_route_group_config.prefix' => 'testftp/gov',
+                'livewire.update_route_group_config.middleware' => ['web'],
+            ]);
+
+            if (!app()->runningInConsole()) {
+                \Illuminate\Support\Facades\URL::formatRoot(null, $url);
+            }
         }
 
         \Illuminate\Support\Facades\Gate::policy(\App\Models\Huissier::class, \App\Policies\HuissierPolicy::class);
