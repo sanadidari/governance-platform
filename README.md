@@ -20,11 +20,11 @@ Alongside the platform, a Sanctum API automatically provisions credentials for t
 
 | KPI Overview | Account Widget |
 |---|---|
-| ![Dashboard KPIs](docs/screenshots/sc1.png) | ![Dashboard account](docs/screenshots/sc2.png) |
+| ![Dashboard KPIs](https://raw.githubusercontent.com/sanadidari/governance-platform/main/docs/screenshots/sc1.png) | ![Dashboard account](https://raw.githubusercontent.com/sanadidari/governance-platform/main/docs/screenshots/sc2.png) |
 
 | Analytics Charts — Huissiers by Region & Status |
 |---|
-| ![Charts](docs/screenshots/sc3.png) |
+| ![Charts](https://raw.githubusercontent.com/sanadidari/governance-platform/main/docs/screenshots/sc3.png) |
 
 Real-time statistics: **3 registered huissiers**, **73 courts (mahakems)**, **12 regions**. Charts rendered via Filament widgets with Recharts.
 
@@ -34,11 +34,11 @@ Real-time statistics: **3 registered huissiers**, **73 courts (mahakems)**, **12
 
 | New Act Form — Date & Type | Act Type Selection |
 |---|---|
-| ![Acte form 1](docs/screenshots/sc4.png) | ![Acte type dropdown](docs/screenshots/sc5.png) |
+| ![Acte form 1](https://raw.githubusercontent.com/sanadidari/governance-platform/main/docs/screenshots/sc4.png) | ![Acte type dropdown](https://raw.githubusercontent.com/sanadidari/governance-platform/main/docs/screenshots/sc5.png) |
 
 | Act Form — Reference Fields |
 |---|
-| ![Acte form 2](docs/screenshots/sc6.png) |
+| ![Acte form 2](https://raw.githubusercontent.com/sanadidari/governance-platform/main/docs/screenshots/sc6.png) |
 
 Act types: Notification, Status Change, Constat/Saisie. Full lifecycle tracking with timestamps and reference numbers.
 
@@ -48,7 +48,7 @@ Act types: Notification, Status Change, Constat/Saisie. Full lifecycle tracking 
 
 | Complaint Form — Rich Text | Complaint Status & Urgency |
 |---|---|
-| ![Complaint form 1](docs/screenshots/sc7.png) | ![Complaint form 2](docs/screenshots/sc8.png) |
+| ![Complaint form 1](https://raw.githubusercontent.com/sanadidari/governance-platform/main/docs/screenshots/sc7.png) | ![Complaint form 2](https://raw.githubusercontent.com/sanadidari/governance-platform/main/docs/screenshots/sc8.png) |
 
 Complaint intake with rich text editor, status workflow (pending/in review/resolved), and urgency classification.
 
@@ -58,11 +58,11 @@ Complaint intake with rich text editor, status workflow (pending/in review/resol
 
 | Huissiers List — Search & Filter | Add Huissier — Personal Info |
 |---|---|
-| ![Huissiers list](docs/screenshots/sc9.png) | ![Add huissier 1](docs/screenshots/sc10.png) |
+| ![Huissiers list](https://raw.githubusercontent.com/sanadidari/governance-platform/main/docs/screenshots/sc9.png) | ![Add huissier 1](https://raw.githubusercontent.com/sanadidari/governance-platform/main/docs/screenshots/sc10.png) |
 
 | Add Huissier — Address Fields |
 |---|
-| ![Add huissier 2](docs/screenshots/sc11.png) |
+| ![Add huissier 2](https://raw.githubusercontent.com/sanadidari/governance-platform/main/docs/screenshots/sc11.png) |
 
 On huissier creation, the `HuissierObserver` auto-provisions a `User` record with Sanctum credentials — same credentials sync to NOUR mobile via Supabase Auth (shared email identity).
 
@@ -72,7 +72,7 @@ On huissier creation, the `HuissierObserver` auto-provisions a `User` record wit
 
 | Add Regional Admin (مسؤول جهوي) |
 |---|
-| ![Regional admin form](docs/screenshots/sc12.png) |
+| ![Regional admin form](https://raw.githubusercontent.com/sanadidari/governance-platform/main/docs/screenshots/sc12.png) |
 
 RBAC with roles: `super_admin`, `regional_admin`, `huissier`. Regional admins manage their own jurisdiction scope.
 
@@ -82,11 +82,11 @@ RBAC with roles: `super_admin`, `regional_admin`, `huissier`. Regional admins ma
 
 | 12 Moroccan Regions (الجهات) | Regions — Continued |
 |---|---|
-| ![Regions 1](docs/screenshots/sc13.png) | ![Regions 2](docs/screenshots/sc14.png) |
+| ![Regions 1](https://raw.githubusercontent.com/sanadidari/governance-platform/main/docs/screenshots/sc13.png) | ![Regions 2](https://raw.githubusercontent.com/sanadidari/governance-platform/main/docs/screenshots/sc14.png) |
 
 | 73 Courts (المحاكم) | Courts — Continued |
 |---|---|
-| ![Mahakems 1](docs/screenshots/sc15.png) | ![Mahakems 2](docs/screenshots/sc16.png) |
+| ![Mahakems 1](https://raw.githubusercontent.com/sanadidari/governance-platform/main/docs/screenshots/sc15.png) | ![Mahakems 2](https://raw.githubusercontent.com/sanadidari/governance-platform/main/docs/screenshots/sc16.png) |
 
 Full geographic coverage of Morocco's judicial map: all regions and all courts pre-seeded.
 
