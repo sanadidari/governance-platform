@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
+use App\Http\Resources\ActeResource;
 use App\Models\Acte;
 use Illuminate\Http\Request;
 
@@ -26,7 +25,7 @@ class ActeController extends Controller
             $query->where('status', $request->status);
         }
 
-        return response()->json($query->latest()->get());
+        return ActeResource::collection($query->with('huissier')->latest()->get());
     }
 
     public function updateStatus(Request $request, Acte $acte)
@@ -48,6 +47,9 @@ class ActeController extends Controller
             'notes' => $validated['notes'] ?? $acte->notes,
         ]);
 
-        return response()->json(['message' => 'Statut mis à jour.', 'acte' => $acte]);
+        return response()->json([
+            'message' => 'Statut mis à jour.',
+            'acte'    => new ActeResource($acte->load('huissier')),
+        ]);
     }
 }

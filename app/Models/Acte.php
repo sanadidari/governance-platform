@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Acte extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'huissier_id',
         'reference',
@@ -20,9 +23,9 @@ class Acte extends Model
     ];
 
     protected $casts = [
-        'date_depot' => 'date',
+        'date_depot'    => 'date',
         'date_execution' => 'date',
-        'attachments' => 'array',
+        'attachments'   => 'array',
     ];
 
     public function huissier()
