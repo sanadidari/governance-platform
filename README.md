@@ -26,7 +26,7 @@ Alongside the platform, a Sanctum API automatically provisions credentials for t
 |---|
 | ![Charts](https://raw.githubusercontent.com/sanadidari/governance-platform/main/docs/screenshots/sc3.png) |
 
-Real-time statistics: **3 registered huissiers**, **73 courts (mahakems)**, **12 regions**. Charts rendered via Filament widgets with Recharts.
+Dashboard statistics: **73 courts (mahakems)**, **12 regions** — demo instance. Charts rendered via Filament widgets with Recharts.
 
 ---
 
