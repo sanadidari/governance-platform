@@ -2,7 +2,7 @@
 
 **National platform for managing the bailiff profession in Morocco**, built for the [National Council of Bailiffs of Justice](https://sanadidari.com/witi/gov). Part of the **NOUR** unified judicial ecosystem.
 
-🔗 [Live Portal](https://sanadidari.com/witi/gov) · [NOUR Mobile App](https://github.com/sanadidari/nour) · [WITI Ecosystem](https://sanadidari.com/witi)
+🔗 [Live Portal](https://sanadidari.com/witi/governance) · [NOUR Mobile App](https://github.com/sanadidari/nour-mobile) · [WITI Ecosystem](https://sanadidari.com/witi)
 
 ---
 
@@ -136,8 +136,8 @@ Admin panel at: `http://127.0.0.1:8000/admin/shuffle`
 
 | Project | Description |
 |---|---|
-| [NOUR](https://github.com/sanadidari/nour) | Unified judicial mobile app (Flutter) — this platform + QRPRUF |
-| [WITI Certify Protocol](https://github.com/sanadidari/witi-certify-protocol) | Zero-trust proof of presence (QR cryptography) |
+| [NOUR Mobile](https://github.com/sanadidari/nour-mobile) | Unified judicial mobile app (Flutter) — this platform + QRPruf |
+| [QRPruf](https://github.com/sanadidari/qrpruf) | Zero-trust proof of presence (QR cryptography) |
 
 ---
 
