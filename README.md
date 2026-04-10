@@ -1,6 +1,6 @@
 # Governance Platform — Institutional Management for Judicial Officers
 
-[![Laravel CI](https://github.com/sanadidari/governance-platform/actions/workflows/laravel_ci.yml/badge.svg)](https://github.com/sanadidari/governance-platform/actions/workflows/laravel_ci.yml)
+[![Laravel CI](https://github.com/sanadidari/governance-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/sanadidari/governance-platform/actions/workflows/ci.yml)
 ![Laravel: 12](https://img.shields.io/badge/Laravel-12-FF2D20?logo=laravel)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 
