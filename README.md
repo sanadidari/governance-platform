@@ -1,5 +1,9 @@
 # Governance Platform — Institutional Management for Judicial Officers
 
+[![Laravel CI](https://github.com/sanadidari/governance-platform/actions/workflows/laravel_ci.yml/badge.svg)](https://github.com/sanadidari/governance-platform/actions/workflows/laravel_ci.yml)
+![Laravel: 12](https://img.shields.io/badge/Laravel-12-FF2D20?logo=laravel)
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+
 **National platform for managing the bailiff profession in Morocco**, built for the [National Council of Bailiffs of Justice](https://sanadidari.com/witi/gov). Part of the **NOUR** unified judicial ecosystem.
 
 🔗 [Live Portal](https://sanadidari.com/witi/governance) · [NOUR Mobile App](https://github.com/sanadidari/nour-mobile) · [WITI Ecosystem](https://sanadidari.com/witi)
